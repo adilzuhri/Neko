@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>nus.iss</groupId>
-	<artifactId>MiniProject2</artifactId>
+	<artifactId>Neko</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>MiniProject2</name>
-	<description>Mini Project 2</description>
+	<name>Neko</name>
+	<description>Neko</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
