@@ -1,13 +1,13 @@
-package nus.iss.MiniProject2;
+package nus.iss.Neko;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MiniProject2Application {
+public class NekoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MiniProject2Application.class, args);
+		SpringApplication.run(NekoApplication.class, args);
 	}
 
 }
