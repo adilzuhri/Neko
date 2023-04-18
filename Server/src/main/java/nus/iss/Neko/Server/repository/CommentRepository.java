@@ -1,4 +1,4 @@
-package nus.iss.Neko.repository;
+package nus.iss.Neko.Server.repository;
 
 public class CommentRepository {
     

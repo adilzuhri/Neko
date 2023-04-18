@@ -1,4 +1,4 @@
-package nus.iss.Neko.controllers;
+package nus.iss.Neko.Server.controllers;
 
 public class CatController {
     
