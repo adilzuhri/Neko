@@ -1,4 +1,4 @@
-package nus.iss.Neko.models;
+package nus.iss.Neko.services;
 
 import java.io.IOException;
 import java.util.Date;

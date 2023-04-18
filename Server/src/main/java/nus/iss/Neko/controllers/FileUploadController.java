@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
-import nus.iss.Neko.models.S3Service;
+import nus.iss.Neko.services.S3Service;
 
 @Controller
 public class FileUploadController {

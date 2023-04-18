@@ -8,7 +8,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import nus.iss.Neko.models.User;
-import nus.iss.Neko.repository.Queries.*;
+import nus.iss.Neko.repository.Queries;
 
 
 @Repository
