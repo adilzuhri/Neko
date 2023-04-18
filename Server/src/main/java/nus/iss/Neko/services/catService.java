@@ -1,5 +1,5 @@
 package nus.iss.Neko.services;
 
-public class catService {
+public class CatService {
     
 }

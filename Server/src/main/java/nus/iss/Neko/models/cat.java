@@ -1,5 +1,5 @@
 package nus.iss.Neko.models;
 
-public class cat {
+public class Cat {
     
 }

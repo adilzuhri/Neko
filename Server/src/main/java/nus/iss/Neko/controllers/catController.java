@@ -1,5 +1,5 @@
 package nus.iss.Neko.controllers;
 
-public class catController {
+public class CatController {
     
 }
