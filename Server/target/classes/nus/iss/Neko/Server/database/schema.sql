@@ -51,18 +51,6 @@ CREATE TABLE comments (
     FOREIGN KEY (cat_id) REFERENCES cats(id)
 );
 
--- Stores information on cat cafes.
-CREATE TABLE cat_cafes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    city VARCHAR(255) NOT NULL,
-    latitude DECIMAL(9, 6) NOT NULL,
-    longitude DECIMAL(9, 6) NOT NULL,
-    phone VARCHAR(20),
-    website VARCHAR(255)
-);
-
 -- Stores information on vet clinics.
 CREATE TABLE vet_clinics (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -87,11 +75,11 @@ CREATE TABLE pet_food_stores (
     website VARCHAR(255)
 );
 
--- Stores user reviews on cat cafes, vet clinics, and pet food stores.
+-- Stores user reviews on vet clinics, and pet food stores.
 CREATE TABLE reviews (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
-    place_type ENUM('CAFE', 'CLINIC', 'STORE') NOT NULL,
+    place_type ENUM('CLINIC', 'STORE') NOT NULL,
     place_id INT NOT NULL,
     rating DECIMAL(3, 2) NOT NULL,
     comment TEXT,
@@ -99,15 +87,14 @@ CREATE TABLE reviews (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
--- Stores operating hours for cat cafes, vet clinics, and pet food stores.
+-- Stores operating hours for vet clinics, and pet food stores.
 CREATE TABLE operating_hours (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    place_type ENUM('CAFE', 'CLINIC', 'STORE') NOT NULL,
+    place_type ENUM('CLINIC', 'STORE') NOT NULL,
     place_id INT NOT NULL,
     day_of_week ENUM('MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN') NOT NULL,
     open_time TIME NOT NULL,
     close_time TIME NOT NULL
 );
 
--- Note: The place_type column indicates whether the review is for a cat cafe, vet clinic, or pet food store. The place_id column stores the ID of the reviewed place. Make sure to check the place_type when querying for reviews.
--- With these additional tables, you can store user reviews and operating hours for cat cafes, vet clinics, and pet food stores. Remember to establish the correct relationships between tables when querying the data. For example, when retrieving reviews for a specific cat cafe, you should filter by both place_type and place_id.
+-- Remember to establish the correct relationships between tables when querying the data. For example, when retrieving reviews for a specific cat cafe, filter by both place_type and place_id.
