@@ -12,10 +12,11 @@ nus\iss\Neko\Server\models\User.class
 nus\iss\Neko\Server\services\CommentService.class
 nus\iss\Neko\Server\repository\UserRepository.class
 nus\iss\Neko\Server\services\UserService.class
-nus\iss\Neko\Server\controllers\UserController.class
 nus\iss\Neko\Server\NekoApplication.class
 nus\iss\Neko\Server\models\Role.class
+nus\iss\Neko\Server\controllers\LoginController.class
 nus\iss\Neko\Server\repository\VoteRepository.class
+nus\iss\Neko\Server\utils\UserNotCreatedException.class
 nus\iss\Neko\Server\repository\CommentRepository.class
 nus\iss\Neko\Server\config\AppConfig.class
 nus\iss\Neko\Server\utils\DBUtils.class

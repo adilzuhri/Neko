@@ -4,8 +4,8 @@ C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\repository\
 C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\repository\PostRepository.java
 C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\utils\DBUtils.java
 C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\utils\Queries.java
-C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\controllers\UserController.java
 C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\models\Post.java
+C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\controllers\LoginController.java
 C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\NekoApplication.java
 C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\models\User.java
 C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\repository\CatRepository.java
@@ -18,4 +18,5 @@ C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\repository\
 C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\models\Role.java
 C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\controllers\CatController.java
 C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\services\CommentService.java
+C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\utils\UserNotCreatedException.java
 C:\Users\adilz\Desktop\Neko\Server\src\main\java\nus\iss\Neko\Server\models\Cat.java

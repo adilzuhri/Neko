@@ -70,7 +70,7 @@ public class PostService {
 
 		// Fill the post with pertinent user details
 		User user = opt.get();
-		post.setName(user.getName());
+		post.setName(user.getUsername());
 		post.setUserId(user.getUserId());
 
 		// Set the post date

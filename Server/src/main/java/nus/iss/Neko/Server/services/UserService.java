@@ -1,17 +1,37 @@
 package nus.iss.Neko.Server.services;
 
-import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import nus.iss.Neko.Server.models.User;
+import nus.iss.Neko.Server.repository.UserRepository;
 
-public interface UserService {
+@Service
+public class UserService {
 
-	public User insert(User userVO);
+    private UserRepository userRepo;
+    @Autowired
+    public void setUserRepo(UserRepository userRepo) {
+        this.userRepo = userRepo;
+    }
 
-	public List<User> findAll();
+    public Optional<User> getUser(String email) {
+        return userRepo.checkUserExistsByEmail(email);
+    }
 
-	public void delete(int id);
+    public Optional<String> createUser(User user) {
 
-	public User findById(int id);
+        Optional<User> UserOpt = getUser(user.getEmail());
+        if (UserOpt.isPresent()) {
+            return Optional.empty();
+        }
 
-	public User updateUser(int id, User userVO);
+        if (userRepo.createNewUser(user)) {
+            return Optional.of("User created");
+        } else {
+            return Optional.of("Internal error! User not created. Please try again.");
+        }
+    }
 }
