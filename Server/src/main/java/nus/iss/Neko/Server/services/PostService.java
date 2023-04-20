@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import nus.iss.Neko.Server.models.Post;
-import nus.iss.Neko.Server.models.User;
+// import nus.iss.Neko.Server.models.User;
 import nus.iss.Neko.Server.repository.ImageRepository;
 import nus.iss.Neko.Server.repository.PostRepository;
-import nus.iss.Neko.Server.repository.UserRepository;
+// import nus.iss.Neko.Server.repository.UserRepository;
 import nus.iss.Neko.Server.repository.VoteRepository;
 
 
@@ -25,8 +25,8 @@ public class PostService {
 
 	private Logger logger = Logger.getLogger(PostService.class.getName());
 
-	@Autowired
-	private UserRepository userRepo;
+	// @Autowired
+	// private UserRepository userRepo;
 
 	@Autowired
 	private ImageRepository imageRepo;
@@ -62,16 +62,6 @@ public class PostService {
 	}
 
 	public Optional<String> createPost(Post post, MultipartFile file) {
-
-		// Check if the user is valid
-		Optional<User> opt = userRepo.findUserByEmail(post.getEmail());
-		if (opt.isEmpty())
-			return Optional.empty();
-
-		// Fill the post with pertinent user details
-		User user = opt.get();
-		post.setName(user.getUsername());
-		post.setUserId(user.getUserId());
 
 		// Set the post date
 		post.now();
