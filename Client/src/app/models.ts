@@ -8,3 +8,9 @@ export interface Post {
 export interface PostResponse {
 	postId: string
 }
+
+export interface User {
+    username: string,
+    email: string,
+    password: string
+}
