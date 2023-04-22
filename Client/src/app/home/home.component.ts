@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  constructor() { }
+
+  slides: string[] = [
+    '/assets/posts.png',
+    '/assets/search.png',
+  ]
+
+  ngOnInit(): void {
+  }
 }

@@ -1,1 +1,33 @@
-<p>home works!</p>
+<div class="body-text">
+    <h1>Welcome to Neko Kona</h1>
+    <p>A haven for cat lovers and enthusiasts!</p>
+</div>
+<div class="body">
+    <div class="container">
+    <mat-carousel
+        timings="250ms ease-in"
+        [autoplay]="true"
+        [interval]="4000"
+        color="primary"
+        maxWidth="100%"
+        [proportion]="40"
+        [slides]="4"
+        [loop]="true"
+        [hideArrows]="false"
+        [hideIndicators]="false"
+        [useKeyboard]="true"
+        [useMouseWheel]="false"
+        orientation="ltr"
+    >
+    <mat-carousel-slide
+        #matCarouselSlide
+         *ngFor="let slide of slides"
+        overlayColor="#00000010"
+        [hideOverlay]="false"
+        [image]="slide"
+    >
+    <!-- <img src="{{slide}}"> -->
+    </mat-carousel-slide>
+    </mat-carousel>
+    </div>
+</div>

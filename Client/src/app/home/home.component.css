@@ -1,0 +1,33 @@
+.body {
+    height: auto;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+img {
+    height: auto
+}
+
+.body-text {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 50px;
+    margin-top: 0px;
+    text-align: center;
+}
+
+p {
+    margin-top: -15px;
+    font-size: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+}
