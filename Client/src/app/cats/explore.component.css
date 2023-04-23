@@ -1,0 +1,46 @@
+:host ::ng-deep .mat-tab-header {
+    z-index: 1000;
+    position: sticky;
+    position: -webkit-sticky;
+    background-color: white;
+}
+
+@media only screen and (min-width: 600px) {
+    .top {
+        top: 70px;
+    }
+}
+
+@media only screen and (max-width: 481px) {
+    .top {
+        top: 200px;
+    }
+}
+
+@media only screen and (min-width: 482px) and (max-width: 827px) {
+    .top {
+        top: 165px;
+    }
+}
+
+@media only screen and (min-width: 828px) and (max-width: 919px) {
+    .top {
+        top: 128px;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 827px) {
+    .top {
+        top: 150px;
+    }
+}
+
+.mat-tab-link {
+    opacity: 1;
+}
+
+div {
+    top: 80px;
+    border: 3px solid blue;
+    z-index: 10000;
+}
