@@ -1,0 +1,33 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    z-index: 1000;
+}
+
+mat-card {
+    width: 80%;
+}
+
+img {
+    max-width: 80%;
+    height: auto;
+}
+
+.container {
+    display: flex;
+    flex: 1 0 400px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    margin-top: 30px;
+}
+
+.sub-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+}

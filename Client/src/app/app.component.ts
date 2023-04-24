@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Client';
+
+  loggedIn = false;
+
+@HostListener('window:scroll', ['$event'])
+
+onWindowScroll() {
+    let element = document.querySelector('.nav') as HTMLElement;
+    if (window.pageYOffset > 5) {
+      element.classList.add('navbar-inverse');
+    } else {
+      element.classList.remove('navbar-inverse');
+    }
+  }
 }

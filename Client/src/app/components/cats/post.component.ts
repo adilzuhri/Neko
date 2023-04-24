@@ -51,13 +51,13 @@ export class PostComponent implements OnInit {
       this.idSub$ = this.ar.params.subscribe(b => {
         console.info('>subscribe: ', b)
         // @ts-ignore
-        this.getPostsByRecipeId(b['id'])
+        this.getPostsByCatId(b['id'])
       })
     }
   }
 
-  getPostsByRecipeId(recipe_id: string) {
-    this.postSvc.getPostsByRecipeId(recipe_id)
+  getPostsByCatId(cat_id: string) {
+    this.postSvc.getPostsByCatId(cat_id)
       .then(result => {
         console.info(">>>>> result from getPostsByCatId: " + result.length)
         this.getImgFromS3AndCheckOwnPost(result)

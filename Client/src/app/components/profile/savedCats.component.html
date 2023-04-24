@@ -1,0 +1,21 @@
+<div class="body" *ngIf="savedCats.length > 0">masterKitchen
+    <div class="card">
+        <button mat-stroked-button *ngFor="let cat of savedCats" (click)="getCatDetails(cat.cat_id)">
+            <h3>{{ cat.cat_label }}</h3>
+        </button>
+    </div>
+</div>
+
+<div class="body" *ngIf="savedCats.length == 0 && noCatsSaved">
+    <div class="none">
+        <h3>No cats saved</h3>
+        <button mat-raised-button color="primary" [routerLink]="['/Neko/search']">
+            Search for Cats
+        </button>
+    </div>
+</div>
+
+<div class="body" *ngIf="savedCats.length == 0 && !noCatsSaved">
+    <mat-spinner></mat-spinner>
+</div>
+

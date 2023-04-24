@@ -1,0 +1,26 @@
+button {
+    margin: 10px;
+    padding: 0 20px;
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+}
+
+.card {
+    margin-top: 10px;
+    width: 95%;
+}
+
+.none {
+    display: flex;
+    margin-left: 40px;
+    margin-top: 20px;   
+}
+
+h3 {
+    margin-right: 10px;
+}
