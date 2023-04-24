@@ -4,8 +4,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -73,4 +76,19 @@ public class CatAPIController {
             return ResponseEntity.ok(label); 
         }
     } 
+    @PutMapping("/{id}")
+    public void updateCat(@PathVariable Long id, @RequestBody Cat cat) {
+        Cat existingCat = CatService.getCatLabelById(id);
+        if (existingCat != null) {
+            existingCat.setName(cat.getName());
+            existingCat.setBreed(cat.getBreed());
+            existingCat.setAge(cat.getAge());
+            CatService.saveCat(existingCat);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCat(@PathVariable Long id) {
+        CatService.deleteCat(id);
+    }
 }

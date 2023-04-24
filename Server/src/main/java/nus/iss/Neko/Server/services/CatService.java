@@ -8,7 +8,14 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import nus.iss.Neko.Server.models.Cat;
@@ -20,7 +27,7 @@ import jakarta.json.JsonReader;
 public class CatService implements Serializable {
 
     @Value("live_gMocx8E1lZtM4dLBiGxXQFF7SgjEDc7dVk9DCEnFNgtrkhUygyLPwQVfBBzEhdgn")
-    private String app_key;
+    private static String app_key;
 
     private final String DEFAULT_URL = "https://api.thecatapi.com/v1/images/search";
 
@@ -118,5 +125,37 @@ public class CatService implements Serializable {
         JsonObject data = reader.readObject();
 
         return data;
+    }
+
+    public static void saveCat(Cat cat) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("x-api-key", app_key);
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+        body.add("file", new FileSystemResource(cat.getImage()));
+        body.add("sub_id", cat.getCat_id());
+    }
+
+    public void updateCat(Cat cat) {
+        String url = DEFAULT_URL + "/v1/images/{id}";
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("x-api-key", app_key);
+        HttpEntity<Cat> requestEntity = new HttpEntity<>(cat, headers);
+        RestTemplate.exchange(url, HttpMethod.PUT, requestEntity, Void.class, cat.getCat_id());
+    }
+
+    public void deleteCat(String id) {
+        String url = DEFAULT_URL + "/v1/images/{id}";
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("x-api-key", app_key);
+        HttpEntity<?> requestEntity = new HttpEntity<>(headers);
+        RestTemplate.exchange(url, HttpMethod.DELETE, requestEntity, Void.class, id);
+    }
+
+    public static Cat getCatLabelById(Long id) {
+        return null;
+    }
+
+    public static void deleteCat(Long id) {
     }
 }

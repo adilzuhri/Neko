@@ -40,5 +40,20 @@ public class Cat implements Serializable {
     public void setLink(String link) {
         this.link = link;
     }
+    public Object getName() {
+        return null;
+    }
+    public void setName(Object name) {
+    }
+    public Object getAge() {
+        return null;
+    }
+    public Object getBreed() {
+        return null;
+    }
+    public void setBreed(Object breed) {
+    }
+    public void setAge(Object age) {
+    }
     
 }
