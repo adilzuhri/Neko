@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/models';
-import { UploadService } from 'src/app/services/upload.service';
 import { formatDate } from '@angular/common'
 import { v4 as uuid } from 'uuid';
 import { AppCookieService } from 'src/app/services/cookie.service';
@@ -10,6 +9,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UploadSuccessComponent } from './success.component';
 import { Subscription } from 'rxjs';
 import { UnsuccessfulComponent } from './unsuccessful.component';
+import { UploadService } from 'src/app/upload.service';
 
 @Component({
   selector: 'app-form',

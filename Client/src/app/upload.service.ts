@@ -48,11 +48,11 @@ export class UploadService {
     
         // set the bytes of the buffer to the correct values
         for (var i = 0; i < byteString.length; i++) {
-          ia[i] = byteString.charCodeAt(i);
+        ia[i] = byteString.charCodeAt(i);
         }
     
         // write the ArrayBuffer to a blob, and you're done
         var blob = new Blob([ab], { type: mimeString });
         return blob;
-      }
+    }
 }

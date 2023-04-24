@@ -7,11 +7,11 @@ import { CatService } from 'src/app/services/cat.service';
 import { SavedCatsService } from 'src/app/services/savedcats.service';
 
 @Component({
-  selector: 'app-cat-details',
-  templateUrl: './cat-details.component.html',
-  styleUrls: ['./cat-details.component.css']
+  selector: 'app-detailCats',
+  templateUrl: './detailCats.component.html',
+  styleUrls: ['./detailCats.component.css']
 })
-export class CatDetailsComponent implements OnInit {
+export class DetailCatsComponent implements OnInit {
 
   constructor(private ar: ActivatedRoute,
               private catSvc: CatService,

@@ -5,9 +5,9 @@ import { Cat } from 'src/app/models';
 import { CatService } from 'src/app/services/cat.service';
 
 @Component({
-  selector: 'app-list-cats',
-  templateUrl: './list-cats.component.html',
-  styleUrls: ['./list-cats.component.css']
+  selector: 'app-ListCats',
+  templateUrl: './listCats.component.html',
+  styleUrls: ['./listCats.component.css']
 })
 export class ListCatsComponent implements OnInit {
 

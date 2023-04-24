@@ -11,13 +11,12 @@
             </div>
             <div class="section-two">
                 <p>Cat ID: <span>{{ cat.cat_id }}</span></p>
-                <p>Serving(s): <span>{{ cat.breed }}</span></p>
                 <a href="{{ cat.link }}" target="_blank">Cat Details</a>
             </div>
         </div>
         <div class="buttons">
             <div>
-                <button mat-flat-button color="primary" (click)="reRouteBack(query, num)">Back</button>
+                <button mat-flat-button color="primary" (click)="reRouteBack()">Back</button>
             </div>
             <div class="right-buttons">
                 <button mat-stroked-button color="primary" [routerLink]="['/Neko/upload/snap', cat.cat_id]">

@@ -5,9 +5,9 @@ import { Subscription } from 'rxjs';
 import { CatService } from 'src/app/services/cat.service';
 
 @Component({
-  selector: 'app-find-cats',
-  templateUrl: './find-cats.component.html',
-  styleUrls: ['./find-cats.component.css']
+  selector: 'app-FindCats',
+  templateUrl: './FindCats.component.html',
+  styleUrls: ['./FindCats.component.css']
 })
 export class FindCatsComponent implements OnInit {
 

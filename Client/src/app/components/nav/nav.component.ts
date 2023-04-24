@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { AppCookieService } from 'src/app/services/cookie.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavComponent implements OnInit {
 
   constructor(private route: Router,
               private cookieSvc: AppCookieService) { }

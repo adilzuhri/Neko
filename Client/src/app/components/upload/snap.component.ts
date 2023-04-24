@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WebcamImage } from 'ngx-webcam';
 import { Subject, Subscription } from 'rxjs';
-import { UploadService } from 'src/app/services/upload.service';
+import { UploadService } from 'src/app/upload.service';
 
 @Component({
   selector: 'app-snap',
