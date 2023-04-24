@@ -1,9 +1,9 @@
 import { Injectable, Inject, Optional, OnInit, Input } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent } from '@angular/common/http';
-import { LoginService } from './login.service';
 import { catchError, Observable, of, Subscription } from 'rxjs';
-import { AppCookieService } from './cookie.service';
 import { Router } from '@angular/router';
+import { AppCookieService } from './cookie.service';
+import { LoginService } from './login.service';
 
 @Injectable()
 export class UniversalAppInterceptor implements HttpInterceptor {
@@ -46,5 +46,5 @@ export class UniversalAppInterceptor implements HttpInterceptor {
         this.cookieSvc.remove("username");
         this.cookieSvc.remove("token");
         this.router.navigate(['/login']);
-        }
+      }
 }

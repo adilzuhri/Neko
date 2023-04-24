@@ -1,7 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { MatTabChangeEvent } from '@angular/material/tabs';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-explore',
@@ -39,15 +38,15 @@ export class ExploreComponent implements OnInit {
 
     if (page.includes("explore")) {
       this.links = [
-        { label: 'Latest', path: '/masterKitchen/explore/latest' },
-        { label: 'Popular', path: '/masterKitchen/explore/popular' },
-        { label: 'Search by Recipe ID', path: '/masterKitchen/explore/byRecipeId' }
+        { label: 'Latest', path: '/Neko/explore/latest' },
+        { label: 'Popular', path: '/Neko/explore/popular' },
+        { label: 'Search by Cat ID', path: '/Neko/explore/byCatId' }
       ]
     } else if (page.includes("profile")) {
       this.links = [
-        { label: 'My Posts', path: '/masterKitchen/profile/myPosts' },
-        { label: 'Liked Posts', path: '/masterKitchen/profile/likedPosts' },
-        { label: 'Saved Recipes', path: '/masterKitchen/profile/savedRecipes' }
+        { label: 'My Posts', path: '/Neko/profile/myPosts' },
+        { label: 'Liked Posts', path: '/Neko/profile/likedPosts' },
+        { label: 'Saved Cats', path: '/Neko/profile/savedCats' }
       ]
     }
   }

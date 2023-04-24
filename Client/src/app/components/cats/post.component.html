@@ -4,15 +4,15 @@
         <mat-card-header>
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
             <mat-card-title>{{ post.title }}</mat-card-title>
-            <mat-card-subtitle>{{ post.recipe_label }} by {{ post.username }}</mat-card-subtitle>
+            <mat-card-subtitle>{{ post.cat_label }} by {{ post.username }}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="{{post.imageUUID}}" alt="image of recipe cooked">
+        <img mat-card-image src="{{post.imageUUID}}" alt="image of cat cooked">
         <mat-card-content>
             <p>
                 {{ post.caption }}
             </p>
             <p class="id">
-                Recipe ID: <a [routerLink]="['/Neko/search', post.recipe_id]">{{ post.recipe_id }}</a>
+                Cat ID: <a [routerLink]="['/Neko/search', post.cat_id]">{{ post.cat_id }}</a>
             </p>
         </mat-card-content>
         <div class="likes">

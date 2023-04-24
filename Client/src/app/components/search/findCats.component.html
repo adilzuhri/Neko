@@ -1,9 +1,9 @@
 <div class="container">
-    <!-- <h1>Find</h1> -->
+    <h1>Find a Cat</h1>
     <form [formGroup]="form" (ngSubmit)="processForm()">
         <mat-form-field appearance="outline">
-            <!-- <mat-label>Enter cat ID...</mat-label> -->
-            <input matInput placeholder="Enter cat ID..." formControlName="id">
+            <!-- <mat-label></mat-label> -->
+            <input matInput placeholder="What's cooking..." formControlName="query">
             <button mat-button matSuffix mat-icon-button 
                 color="primary" aria-label="search">
                 <mat-icon>search</mat-icon> 

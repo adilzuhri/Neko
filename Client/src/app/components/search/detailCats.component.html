@@ -1,0 +1,43 @@
+<div class="main" *ngIf="cat.label.length == 0">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div class=main *ngIf="cat.label.length > 0">
+    <mat-card class=container>
+        <h1>{{ cat.label }}</h1>
+        <div class="main">
+            <div class="section-one">
+                <img src="{{ cat.image }}" alt="cat image">
+            </div>
+            <div class="section-two">
+                <p>Cat ID: <span>{{ cat.cat_id }}</span></p>
+                <p>Serving(s): <span>{{ cat.breed }}</span></p>
+                <a href="{{ cat.link }}" target="_blank">Cat Details</a>
+            </div>
+        </div>
+        <div class="buttons">
+            <div>
+                <button mat-flat-button color="primary" (click)="reRouteBack(query, num)">Back</button>
+            </div>
+            <div class="right-buttons">
+                <button mat-stroked-button color="primary" [routerLink]="['/Neko/upload/snap', cat.cat_id]">
+                    Snap a cat
+                </button>
+                <!-- <div> -->
+                    <button *ngIf="!isSaved" class="example.button" mat-button matSuffix mat-stroked-button
+                        color="secondary" aria-label="save"
+                        (click)="alterSavedCats(cat.cat_id, cat.label, 'add')">
+                        <mat-icon>save</mat-icon><span>Save cat</span>
+                    </button>
+                    <button *ngIf="isSaved" class="example.button" mat-button matSuffix mat-raised-button color="accent"
+                        aria-label="save" (click)="alterSavedCats(cat.cat_id, cat.label, 'remove')">
+                        <mat-icon>save</mat-icon><span>Cat saved</span>
+                    </button>
+                <!-- </div> -->
+            </div>
+        </div>
+    </mat-card>
+</div>
+
+<!-- <hr> -->
+<app-post></app-post>

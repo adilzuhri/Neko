@@ -1,4 +1,4 @@
-<div class="body" *ngIf="savedCats.length > 0">masterKitchen
+<div class="body" *ngIf="savedCats.length > 0">Neko
     <div class="card">
         <button mat-stroked-button *ngFor="let cat of savedCats" (click)="getCatDetails(cat.cat_id)">
             <h3>{{ cat.cat_label }}</h3>

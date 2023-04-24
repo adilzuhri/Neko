@@ -9,7 +9,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatCarouselModule } from '@thouet/material-carousel';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 const matModules: any[] = [
@@ -23,7 +22,6 @@ const matModules: any[] = [
     MatTabsModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
-    MatCarouselModule,
     MatToolbarModule,
 ];
 

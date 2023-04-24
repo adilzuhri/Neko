@@ -38,7 +38,7 @@ public class RedisConfiguration {
                 SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
     }
 
-    @Bean(name="recipes")
+    @Bean(name="cats")
     public RedisTemplate<String, Object> createRedisTemplate() {
 
         final RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();

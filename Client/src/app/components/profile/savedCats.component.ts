@@ -31,7 +31,7 @@ export class SavedCatsComponent implements OnInit {
 
   getCatDetails(cat_id: string) {
     this.savedCatsSvc.setCatId(cat_id);
-    this.route.navigate(['/masterKitchen/search/' + cat_id])
+    this.route.navigate(['/Neko/search/' + cat_id])
   }
 
 
