@@ -31,7 +31,7 @@ export class NavComponent implements OnInit {
     this.route.navigate(['/']);
   }
     
-  routeLandingPage() {
+  routeHomePage() {
     this.route.navigate(['/']);
   }
 }

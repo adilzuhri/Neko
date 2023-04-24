@@ -22,10 +22,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailService {
     
-    @Value("${email.from}")
+    @Value("${email.from:}")
     private String fromEmail;
 
-    @Value("${email.password}")
+    @Value("${email.password:}")
     private String password;
 
     public void sendEmailUponSignUp(String toEmail) {
@@ -49,7 +49,7 @@ public class EmailService {
             msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
             msg.addHeader("Content-Transfer-Encoding", "8-bit");
             msg.setFrom(new InternetAddress(fromEmail));
-            msg.setSubject("Welcome to Master Kitchen!");
+            msg.setSubject("Welcome to Neko Kona!");
             msg.setReplyTo(InternetAddress.parse(fromEmail, false));
             msg.setSentDate(new Date());
             msg.setRecipients
@@ -91,7 +91,7 @@ public class EmailService {
             </head>
             <div class=\"body\">
                 <h1> Welcome to Neko Kona </h1>
-                <img src=\"https://unsplash.com/photos/3uI_GYlGT6s\"/>
+                <img src=\"https://images.unsplash.com/photo-1682213916353-279defcd3003?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80\"/>
                 <p> Lorem Ipsum </p>
             </div> 
         """;

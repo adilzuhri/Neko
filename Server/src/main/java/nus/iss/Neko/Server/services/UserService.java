@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import nus.iss.Neko.Server.models.User;
+import nus.iss.Neko.Server.models.CatUser;
 import nus.iss.Neko.Server.repository.UserRepository;
 
 @Service
@@ -17,13 +17,13 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public Optional<User> getUser(String email) {
+    public Optional<CatUser> getUser(String email) {
         return userRepo.checkUserExistsByEmail(email);
     }
 
-    public Optional<String> createUser(User user) {
+    public Optional<String> createUser(CatUser user) {
 
-        Optional<User> UserOpt = getUser(user.getEmail());
+        Optional<CatUser> UserOpt = getUser(user.getEmail());
         if (UserOpt.isPresent()) {
             return Optional.empty();
         }

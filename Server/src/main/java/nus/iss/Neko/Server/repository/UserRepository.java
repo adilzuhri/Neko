@@ -9,7 +9,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import nus.iss.Neko.Server.models.User;
+import nus.iss.Neko.Server.models.CatUser;
 import static nus.iss.Neko.Server.utils.Queries.*;
 
 @Repository
@@ -24,13 +24,13 @@ public class UserRepository {
 	@Autowired
 	private JdbcTemplate template;
 
-	public Optional <User> checkUserExistsByEmail(String email) {
+	public Optional <CatUser> checkUserExistsByEmail(String email) {
 		SqlRowSet result = template.queryForRowSet(SQL_GET_USER, email);
 
 		if (!result.next()) {
 			return Optional.empty();
 		} else {
-			User user = new User();
+			CatUser user = new CatUser();
 			user.setUsername(result.getString("username"));
 			user.setEmail(email);
 			user.setPassword(result.getString("password"));
@@ -38,16 +38,12 @@ public class UserRepository {
 		}
 	}
 
-	public boolean createNewUser(User user) {
+	public boolean createNewUser(CatUser user) {
 		int added = template.update(SQL_NEW_USER,
 				user.getUsername(), user.getEmail(),
 				passwordEncoder.encode(user.getPassword()));
 
 		return added == 1;
-	}
-
-	public Optional<User> findUserByEmail(String email) {
-		return null;
 	}
 
 }

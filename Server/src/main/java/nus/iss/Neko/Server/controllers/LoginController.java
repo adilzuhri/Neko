@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import nus.iss.Neko.Server.models.User;
+import nus.iss.Neko.Server.models.CatUser;
 import nus.iss.Neko.Server.services.UserService;
 import nus.iss.Neko.Server.utils.UserNotCreatedException;
 
@@ -28,7 +28,7 @@ public class LoginController {
     }
 
     @PostMapping(path="/signUp", produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> createUser(@RequestBody User user) 
+    public ResponseEntity<String> createUser(@RequestBody CatUser user) 
             throws UserNotCreatedException {
 
         Optional<String> userCreatedMsgOpt;
@@ -39,7 +39,7 @@ public class LoginController {
         }
 
         if (userCreatedMsgOpt.isEmpty()) {
-            throw new UserNotCreatedException("User account exists; please login.");
+            throw new UserNotCreatedException("CatUser account exists; please login.");
         } else {
             throw new UserNotCreatedException();
         }

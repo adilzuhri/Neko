@@ -13,7 +13,7 @@
         </nav>
     </div>
     <nav *ngIf="!loggedIn()" class="notLoggedIn" #nav>
-        <img class="not-logged-in"src="/assets/logo.png" (click)="routeLandingPage()">
+        <img class="not-logged-in"src="/assets/logo.png" (click)="routeHomePage()">
         <div>
             <button mat-button [routerLink]="['/login']">Login</button>
             <button mat-flat-button color="primary" [routerLink]="['/signUp']">Sign Up</button>

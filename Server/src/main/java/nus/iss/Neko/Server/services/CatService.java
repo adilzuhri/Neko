@@ -7,13 +7,11 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import nus.iss.Neko.Server.models.Cat;
-import nus.iss.Neko.Server.models.CatListResponse;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
@@ -21,11 +19,8 @@ import jakarta.json.JsonReader;
 @Service
 public class CatService implements Serializable {
 
-    @Value("${cat.app.key}")
+    @Value("live_gMocx8E1lZtM4dLBiGxXQFF7SgjEDc7dVk9DCEnFNgtrkhUygyLPwQVfBBzEhdgn")
     private String app_key;
-
-    @Autowired
-    private CachingService cacheSvc;
 
     private final String DEFAULT_URL = "https://api.thecatapi.com/v1/images/search";
 
@@ -43,35 +38,14 @@ public class CatService implements Serializable {
                 url += "&_cont=" + contValue;
                 System.out.println(">>> url: " + url);
         }
-
-        try {
-            CatListResponse catResp = cacheSvc.getListOfCatsId(url, query, pageNum);
-            return Optional.of(catResp);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            if (ex.getMessage().contains("No cats")) {
-                return Optional.empty();
-            } else {
-                return Optional.of("Internal error");
-            }
-        }
+        return null;
     }
 
     public Optional<?> getCatDetails(String id) {
-        String url = buildUrl(DEFAULT_URL + "/" + id)
+        buildUrl(DEFAULT_URL + "/" + id)
             .queryParam("id", id)
             .toUriString();
-        try {
-            Cat cat = cacheSvc.getCatDetails(url, id);
-            return Optional.of(cat);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            if (ex.getMessage().contains("No cat")) {
-                return Optional.empty();
-            } else {
-                return Optional.of("Internal error");
-            }
-        }            
+        return null;
     }
 
     public Optional<String> getCatLabelById(String id) {
