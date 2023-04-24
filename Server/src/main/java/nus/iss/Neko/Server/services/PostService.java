@@ -1,87 +1,85 @@
 package nus.iss.Neko.Server.services;
 
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.transaction.annotation.Transactional;
 
 import nus.iss.Neko.Server.models.Post;
-// import nus.iss.Neko.Server.models.User;
-import nus.iss.Neko.Server.repository.ImageRepository;
 import nus.iss.Neko.Server.repository.PostRepository;
-// import nus.iss.Neko.Server.repository.UserRepository;
-import nus.iss.Neko.Server.repository.VoteRepository;
-
-
 
 @Service
 public class PostService {
 
-	private Logger logger = Logger.getLogger(PostService.class.getName());
+    @Autowired
+    private PostRepository postRepo;
 
-	// @Autowired
-	// private UserRepository userRepo;
+    @Transactional(rollbackFor = Exception.class)
+    public void deletePost(String email, int post_id) throws Exception {
+        if (!postRepo.deletePost(post_id, email)) {
+            throw new Exception("Failed to delete post");
+        }
+        try {
+            postRepo.deleteLikedPostsById(post_id);
+        } catch (Exception ex) {
+            throw new Exception("Failed to delete from likedPosts");
+        }
+    }
 
-	@Autowired
-	private ImageRepository imageRepo;
+    public boolean uploadPostDatabase(Post post) {
+        return postRepo.uploadPost(post);
+    }
 
-	@Autowired
-	private PostRepository postRepo;
+    public Optional<List<Post>> getAllPosts(String email) {
+        Optional<SqlRowSet> resultOpt = postRepo.getAllPostsDateAsc(email);
+        return createListPost(resultOpt);
+    }
 
-	@Autowired
-	private VoteRepository voteRepo;
+    public Optional<List<Post>> getAllLikedPosts(String email) {
+        Optional<SqlRowSet> resultOpt = postRepo.getAllLikedPosts(email);
+        return createListPost(resultOpt);
+    }
 
-	public void like(String postId) {
-		voteRepo.like(postId);
-	}
-	public void dislike(String postId) {
-		voteRepo.dislike(postId);
-	}
+    public Optional<List<Post>> getPopularPosts(String email) {
+        Optional<SqlRowSet> resultOpt = postRepo.getPopularPost(email);
+        return createListPost(resultOpt);
+    }
 
-	public Optional<Post> getPost(String postId) {
+    public Optional<List<Post>> getMyPosts(String email) {
+        Optional<SqlRowSet> resultOpt = postRepo.getMyPosts(email);
+        return createListPost(resultOpt);
+    }
 
-		// Find the post
-		Optional<Post> opt = postRepo.getPost(postId);
-		if (opt.isEmpty())
-			return Optional.empty();
+    public Optional<List<Post>> getPostsByCatId(String email, String cat_id) {
+        Optional<SqlRowSet> resultOpt = postRepo.getPostByCatId(email, cat_id);
+        return createListPost(resultOpt);
+    }
 
-		// Get the votes
-		Map<String, Integer> votes = voteRepo.getVotes(postId);
+    @Transactional(rollbackFor = Exception.class)
+    public void alterLikes(String alteration, int post_id, String email) throws Exception {
+        if (!postRepo.alterPostInLikedPost(post_id, email, alteration)) {
+            throw new Exception("Failed to remove/add post from likedPosts");
+        }
+        if (!postRepo.updateLikesOnPost(post_id, alteration)) {
+            throw new Exception("Failed to update likes");
+        }
+    }
 
-		Post post = opt.get();
-		post.setLike(votes.get("like"));
-		post.setDislike(votes.get("dislike"));
+    private Optional<List<Post>> createListPost(Optional<SqlRowSet> resultOpt) {
+        if (resultOpt.isEmpty()) {
+            return Optional.empty();
+        }
+        SqlRowSet result = resultOpt.get();
 
-		return Optional.of(post);
-	}
-
-	public Optional<String> createPost(Post post, MultipartFile file) {
-
-		// Set the post date
-		post.now();
-
-		// Set a unique post id
-		String postId = UUID.randomUUID().toString().substring(0, 8);
-		post.setPostId(postId);
-
-		// Upload the image to Spaces
-		imageRepo.upload(post, file);
-
-		// Create post in Mongo
-		ObjectId objectId = postRepo.insertPost(post);
-
-		logger.log(Level.INFO
-				, "postId: %s -> _id: %s".formatted(postId, objectId.toString()));
-
-		voteRepo.initialize(postId);
-
-		// Setup likes and dislike
-		return Optional.of(postId);
-	}
+        List<Post> allPosts = new LinkedList<>();
+        while (result.next()) {
+            Post post = Post.createPost(result);
+            allPosts.add(post);
+        }
+        return Optional.of(allPosts);
+    }
 }

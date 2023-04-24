@@ -1,105 +1,123 @@
 package nus.iss.Neko.Server.controllers;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
-import jakarta.json.Json;
-import jakarta.json.JsonObject;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import nus.iss.Neko.Server.models.Post;
+import nus.iss.Neko.Server.models.PostDelete;
 import nus.iss.Neko.Server.services.PostService;
 
-
-@Controller
-@RequestMapping(path="/post")
+@RestController()
+@RequestMapping("/post")
 public class PostController {
 
-	private Logger logger = Logger.getLogger(PostController.class.getName());
+    @Autowired
+    private PostService postSvc;
 
-	@Autowired
-	private PostService postSvc;
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadPost(@RequestBody Post post) {
 
-	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<String> postPostJson(@RequestPart MultipartFile image,
-			@RequestPart String email, @RequestPart String title, @RequestPart String text) {
+        if (postSvc.uploadPostDatabase(post)) {
+            return ResponseEntity.ok("\"Successful upload of post!\"");
+        }
 
-		Post post = new Post();
-		post.setEmail(email);
-		post.setTitle(title);
-		post.setText(text);
+        return ResponseEntity.internalServerError().body("\"Failed to upload post!\"");
+    }
 
-		Optional<String> opt = postSvc.createPost(post, image);
-		String postId = opt.get();
+    @GetMapping("/all")
+    public ResponseEntity<List<Post>> getAllPosts(@RequestParam String email) {
 
-		logger.log(Level.INFO, "New postId: %s".formatted(postId));
+        System.out.println(">>>>> email from Controller: getAllPosts: " + email);
+        Optional<List<Post>> postsOpt = postSvc.getAllPosts(email);
 
-		JsonObject response = Json.createObjectBuilder()
-			.add("postId", postId)
-			.build();
+        if (postsOpt.isEmpty()) {
+            return ResponseEntity.badRequest().body(List.of());
+        }
 
-		return ResponseEntity.ok(response.toString());
-	}
+        List<Post> posts = postsOpt.get();
+        return ResponseEntity.ok(posts);
+    }
 
-	@PostMapping
-	public String postPost(@RequestPart MultipartFile image,
-			@RequestPart String email, @RequestPart String title, @RequestPart String text,
-			Model model) {
+    @GetMapping("/updateLikes")
+    public ResponseEntity<?> updateLikesOnPost(
+            @RequestParam int post_id, @RequestParam String alteration,
+            @RequestParam String email) {
+        
+        System.out.println(">>>> post_id & alteration: " + post_id + " " + alteration);
 
-		logger.log(Level.INFO, "File name: %s\n".formatted(image.getOriginalFilename()));
+        try {
+            postSvc.alterLikes(alteration, post_id, email);
+            return ResponseEntity.ok("\"Likes updated successfully\"");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ResponseEntity.internalServerError().body(ex.getMessage());
+        }
+    }
 
-		Post post = new Post();
-		post.setEmail(email);
-		post.setTitle(title);
-		post.setText(text);
+    @GetMapping("/allLikedPosts")
+    public ResponseEntity<?> getAllLikedPosts(@RequestParam String email) {
+        Optional<List<Post>> likedPostOpt = postSvc.getAllLikedPosts(email);
 
-		Optional<String> opt = postSvc.createPost(post, image);
-		String postId = opt.get();
+        if (likedPostOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
-		logger.log(Level.INFO, "New postId: %s".formatted(postId));
+        return ResponseEntity.ok(likedPostOpt.get());
+    }
 
-		return "redirect:/post/%s".formatted(postId);
-	}
+    @GetMapping("/popular")
+    public ResponseEntity<?> getPopularPosts(@RequestParam String email) {
+        Optional<List<Post>> popularPostsOpt = postSvc.getPopularPosts(email);
 
-	@GetMapping(path="{postId}")
-	public String getPost(@PathVariable String postId, Model model) {
-		Optional<Post> opt = postSvc.getPost(postId);
+        if (popularPostsOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
-		// If we cannot find post, return to index.html
-		if (opt.isEmpty())
-			return "redirect:/";
+        return ResponseEntity.ok(popularPostsOpt.get());
+    }
 
-		model.addAttribute("post", opt.get());
-		return "post";
-	}
+    @GetMapping("/myPosts")
+    public ResponseEntity<?> getMyPosts(@RequestParam String email) {
+        Optional<List<Post>> myPostsOpt = postSvc.getMyPosts(email);
+        
+        if (myPostsOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
-	@PostMapping(path="{postId}/{vote}")
-	public String postLike(@PathVariable String postId, 
-			@PathVariable String vote, Model model) {
+        return ResponseEntity.ok(myPostsOpt.get());
+    }
 
-		if ("like".equals(vote.trim().toLowerCase()))
-			postSvc.like(postId);
+    @GetMapping("/byCatId")
+    public ResponseEntity<?> getPostsByCatId(@RequestParam String email,
+            @RequestParam String cat_id) {
 
-		else if ("dislike".equals(vote.trim().toLowerCase()))
-			postSvc.dislike(postId);
+        Optional<List<Post>> postsByCatIdOpt = 
+            postSvc.getPostsByCatId(email, cat_id);
+        
+        if (postsByCatIdOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
-		Optional<Post> opt = postSvc.getPost(postId);
+        return ResponseEntity.ok(postsByCatIdOpt.get());
+    }
 
-		model.addAttribute("post", opt.get());
-		return "post";
-	}
+    @PostMapping("/deletePost")
+    public ResponseEntity<String> deletePostById(@RequestBody PostDelete postDelete) {
+        try {
+            postSvc.deletePost(postDelete.getEmail(), postDelete.getPost_id());
+            return ResponseEntity.ok().body("\"Post deleted from database\"");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ResponseEntity.internalServerError().body("\"Failed to delete post\"");
+        }
+    }
 }
