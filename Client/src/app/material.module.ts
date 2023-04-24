@@ -10,6 +10,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCarouselModule } from '@thouet/material-carousel'
 
 const matModules: any[] = [
     MatMenuModule,
@@ -23,6 +24,7 @@ const matModules: any[] = [
     MatProgressSpinnerModule,
     MatTooltipModule,
     MatToolbarModule,
+    MatCarouselModule
 ];
 
 @NgModule({

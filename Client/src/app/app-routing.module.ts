@@ -8,7 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/login/register.component';
 import { SavedCatsComponent } from './components/profile/savedCats.component';
-import { CatDetailsComponent } from './components/search/detailCats.component';
+import { DetailCatsComponent } from './components/search/detailCats.component';
 import { FindCatsComponent } from './components/search/findCats.component';
 import { ListCatsComponent } from './components/search/listCats.component';
 import { FormComponent } from './components/upload/form.component';
@@ -61,8 +61,8 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'Neko/search/:query/:num/:id', component: CatDetailsComponent, /* canActivate: [AuthorizeGuard], */ title: 'Cat Details' },
-  { path: 'Neko/search/:id', component: CatDetailsComponent, /* canActivate: [AuthorizeGuard], */ title: 'Cat Details' },
+  { path: 'Neko/search/:query/:num/:id', component: DetailCatsComponent, /* canActivate: [AuthorizeGuard], */ title: 'Cat Details' },
+  { path: 'Neko/search/:id', component: DetailCatsComponent, /* canActivate: [AuthorizeGuard], */ title: 'Cat Details' },
   {
     path: 'Neko/profile',
     title: 'My Profile',

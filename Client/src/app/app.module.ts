@@ -48,7 +48,6 @@ import { UnsuccessfulComponent } from './components/upload/unsuccessful.componen
     LoginComponent,
     RegisterComponent,
     NavComponent,
-    HomeComponent,
     ExploreComponent,
     SuccessComponent,
     SnapComponent,

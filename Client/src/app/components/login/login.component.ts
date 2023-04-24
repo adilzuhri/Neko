@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { LoginService } from 'src/app/services/login.service';
 import { User } from 'src/app/models';
 import { Router } from '@angular/router';
-import { UniversalAppInterceptor } from 'src/app/services/http.service';
 import { AppCookieService } from 'src/app/services/cookie.service';
 
 @Component({
