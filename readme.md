@@ -64,7 +64,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <br>
-<img style="border:2px solid black;" src="https://raw.githubusercontent.com/adilzuhri/Neko/master/Server/src/main/resources/static/client/assets/Home-mockup.png">
+<img style="border: 2px solid black" src="https://raw.githubusercontent.com/adilzuhri/Neko/master/Server/src/main/resources/static/client/assets/Home-mockup.png"/>
 <br>
 <br>
 <br>
