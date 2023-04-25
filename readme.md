@@ -15,7 +15,6 @@
   <a href="https://github.com/adilzuhri/Neko">
     <img src="https://raw.githubusercontent.com/adilzuhri/Neko/master/Server/src/main/resources/static/client/assets/logo.png" alt="Logo" width="200" height="200">
   </a>
-
 <h3 align="center"><b>Neko Kona</b></h3>
 
   <p align="center">
@@ -65,7 +64,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <br>
-<img src="https://raw.githubusercontent.com/adilzuhri/Neko/master/Server/src/main/resources/static/client/assets/Home-mockup.png">
+<img style="border:2px solid black;" src="https://raw.githubusercontent.com/adilzuhri/Neko/master/Server/src/main/resources/static/client/assets/Home-mockup.png">
 <br>
 <br>
 <br>
