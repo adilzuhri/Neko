@@ -27,7 +27,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/login/register.component';
 import { SuccessComponent } from './components/login/success.component';
-import { NavComponent } from './components/nav/nav.component';
+import { NavComponent } from './components/nav.component';
 import { SavedCatsComponent } from './components/profile/savedCats.component';
 import { DetailCatsComponent } from './components/search/detailCats.component';
 import { FindCatsComponent } from './components/search/findCats.component';

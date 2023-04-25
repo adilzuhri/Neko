@@ -10,8 +10,10 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   slides: string[] = [
-    '/assets/posts.png',
-    '/assets/search.png',
+    '/assets/home1.png',
+    '/assets/home2.jpg',
+    '/assets/home3.jpg',
+    '/assets/home4.jpg',
   ]
 
   ngOnInit(): void {
